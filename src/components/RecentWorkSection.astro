@@ -1,5 +1,7 @@
 ---
 import RecentWorkBentoItem from "./RecentWorkBentoItem.astro"
+
+import { recentWorks } from "@/lib/data"
 ---
 
 <section id="recentWork" class="w-full xl:w-[1440px] mx-auto py-20 flex flex-col justify-center items-center space-y-10">
@@ -8,58 +10,20 @@ import RecentWorkBentoItem from "./RecentWorkBentoItem.astro"
     <div class="bg-[#892C14] w-1/6 h-1"></div>
   </header>
   <div class="grid grid-cols-1 md:grid-cols-10 auto-rows-[30rem] gap-4">
-    <RecentWorkBentoItem 
-        class="col-span-1 md:col-span-4" 
-        title="Lorem ipsum"
-      >
-        <div
-          slot="image"
-          class="absolute left-0 top-0 bottom-0 w-full group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90 bg-center -z-10"
-          style="background-image: url('/banner_tmp.png');"
-        />
-        <p slot="content" class="max-w-xl text-white text-ellipsis line-clamp-3">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel mattis nisi. <strong>Phasellus et leo ullamcorper, maximus arcu in</strong>, tincidunt ipsum. Aliquam interdum vehicula lectus eget congue. Donec porta justo eget libero ultrices pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer vitae diam sem. Duis quis leo eget tellus ornare rutrum sit amet vitae arcu. Duis vehicula tortor sed mi egestas volutpat.
-        </p>
-      </RecentWorkBentoItem>
-      <RecentWorkBentoItem 
-        class="col-span-1 md:col-span-6" 
-        title="Lorem ipsum"
-      >
-        <div
-          slot="image"
-          class="absolute left-0 top-0 bottom-0 w-full group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90 bg-center -z-10"
-          style="background-image: url('/banner_tmp.png');"
-        />
-        <p slot="content" class="max-w-xl text-white text-ellipsis line-clamp-3">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel mattis nisi. <strong>Phasellus et leo ullamcorper, maximus arcu in</strong>, tincidunt ipsum. Aliquam interdum vehicula lectus eget congue. Donec porta justo eget libero ultrices pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer vitae diam sem. Duis quis leo eget tellus ornare rutrum sit amet vitae arcu. Duis vehicula tortor sed mi egestas volutpat.
-        </p>
-      </RecentWorkBentoItem>
-      <RecentWorkBentoItem 
-        class="col-span-1 md:col-span-6" 
-        title="Lorem ipsum"
-      >
-        <div
-        slot="image"
-        class="absolute left-0 top-0 bottom-0 w-full group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90 bg-center -z-10"
-        style="background-image: url('/banner_tmp.png');"
-        />
-        <p slot="content" class="max-w-xl text-white text-ellipsis line-clamp-3">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel mattis nisi. <strong>Phasellus et leo ullamcorper, maximus arcu in</strong>, tincidunt ipsum. Aliquam interdum vehicula lectus eget congue. Donec porta justo eget libero ultrices pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer vitae diam sem. Duis quis leo eget tellus ornare rutrum sit amet vitae arcu. Duis vehicula tortor sed mi egestas volutpat.
-        </p>
-      </RecentWorkBentoItem>
-      <RecentWorkBentoItem 
-        class="col-span-1 md:col-span-4" 
-        title="Lorem ipsum"
-      >
-        <div
-          slot="image"
-          class="absolute left-0 top-0 bottom-0 w-full group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90 bg-center -z-10"
-          style="background-image: url('/banner_tmp.png');"
-        />
-        <p slot="content" class="max-w-xl text-white text-ellipsis line-clamp-3">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel mattis nisi. <strong>Phasellus et leo ullamcorper, maximus arcu in</strong>, tincidunt ipsum. Aliquam interdum vehicula lectus eget congue. Donec porta justo eget libero ultrices pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer vitae diam sem. Duis quis leo eget tellus ornare rutrum sit amet vitae arcu. Duis vehicula tortor sed mi egestas volutpat.
-        </p>
-      </RecentWorkBentoItem>
+    {
+      recentWorks.map(
+        (recentWork, index) => (
+          <RecentWorkBentoItem
+            class={`col-span-1 md:col-span-${(index == 0 || index == 3) ? 4 : 6}`}
+            title={recentWork.title}
+            subtitle={recentWork.subtitle}
+            image={recentWork.image}
+          >
+            <p slot="content" class="max-w-xl text-white text-ellipsis line-clamp-3" set:html={recentWork.content}></p>
+          </RecentWorkBentoItem>
+        )
+      )
+    }
   </div>
   <button 
     class="bg-[#892C14] border-2 border-transparent px-4 py-2 text-white rounded-lg cursor-pointer scale-90
