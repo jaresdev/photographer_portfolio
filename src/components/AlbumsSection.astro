@@ -1,0 +1,32 @@
+---
+import AlbumsItem from "./AlbumsItem.astro"
+
+import { albums } from '@/lib/data'
+
+---
+
+<section id="albums" class="w-full xl:w-[1440px] mx-auto py-20 flex flex-col justify-center items-center space-y-10">
+  <article class="w-full xl:w-[1440px] flex flex-col justify-center items-center">
+    <h2 class="text-3xl m-2">Mis álbumes</h2>
+    <div class="bg-[#892C14] w-1/5 h-1"></div>
+  </article>
+  <article class="w-full xl:w-[1440px] flex flex-wrap justify-center items-center gap-10">
+    {
+      albums.map(
+        ({title, subtitle, description, image}) => (
+          <AlbumsItem
+            title={title}
+            subtitle={subtitle}
+            description={description}
+            image={image}
+          />
+        )
+      )
+    }
+  </article>
+  <button 
+    class="bg-[#892C14] border-2 border-transparent px-4 py-2 text-white rounded-lg cursor-pointer scale-90
+    transition-all duration-200 ease-in-out hover:scale-110 hover:opacity-100 hover:bg-transparent hover:border-[#892C14]
+    hover:text-[#892C14]"
+  >Ver todos los álbumes</button>
+</section>

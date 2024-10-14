@@ -1,11 +1,11 @@
-export interface RecentWork {
+export interface Album {
   title: string;
   subtitle: string;
   description: string;
   image: string;
 }
 
-export const recentWorks: RecentWork[] = [
+export const albums: Album[] = [
   {
     title: "Sydney Opera House",
     subtitle: "Sydney",
