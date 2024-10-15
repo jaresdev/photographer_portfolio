@@ -1,10 +1,9 @@
 ---
 import Banner from "@/components/Banner.astro"
 import Layout from "../../layouts/Layout.astro"
-import { allWorks } from "@/lib/data"
-import { readDirectory } from "@/utils/readWorks"
+import { getImagesFromDirectory } from "@/utils/readWorks"
 
-const files: string[] = await readDirectory(`/public/works`)
+const files: string[] = await getImagesFromDirectory(`/public/works`)
 ---
 
 <Layout title=`Alejandro Arroyo - Photo - Todos mis trabajos`>

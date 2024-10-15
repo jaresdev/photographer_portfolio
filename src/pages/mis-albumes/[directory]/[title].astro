@@ -2,13 +2,13 @@
 import Banner from "@/components/Banner.astro"
 import Layout from "../../../layouts/Layout.astro"
 import { albums } from "@/lib/data"
-import { readDirectory } from "@/utils/readWorks"
+import { getImagesFromDirectory } from "@/utils/readWorks"
 
 const { title, directory } = Astro.params
 
 const album = albums.find(album => album.title === title)
 
-const files: string[] = await readDirectory(`/public/albums/${directory}`)
+const files: string[] = await getImagesFromDirectory(`/public/albums/${directory}`)
 ---
 
 <Layout title=`Alejandro Arroyo - Photo - ${title}`>

@@ -2,13 +2,13 @@
 import Banner from "@/components/Banner.astro"
 import Layout from "../../../layouts/Layout.astro"
 import { recentWorks } from "@/lib/data"
-import { readDirectory } from "@/utils/readWorks"
+import { getImagesFromDirectory } from "@/utils/readWorks"
 
 const { title, directory } = Astro.params
 
 const recentWork = recentWorks.find(recentWork => recentWork.title === title)
 
-const files: string[] = await readDirectory(`/public/works/${directory}`)
+const files: string[] = await getImagesFromDirectory(`/public/works/${directory}`)
 ---
 
 <Layout title=`Alejandro Arroyo - Photo - ${title}`>
