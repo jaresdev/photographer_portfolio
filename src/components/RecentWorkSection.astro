@@ -12,14 +12,14 @@ import { recentWorks } from "@/lib/data"
   <div class="grid grid-cols-1 md:grid-cols-9 auto-rows-[30rem] gap-4 mx-10">
     {
       recentWorks.map(
-        ({id, title, subtitle, image, content}, index) => (
+        ({id, title, subtitle, image, description}, index) => (
           <RecentWorkBentoItem
             class={`col-span-1 ${(index == 0 || index == 3) ? 'md:col-span-5' : 'md:col-span-4' }`}
             title={title}
             subtitle={subtitle}
             image={image}
           >
-            <p slot="content" class="max-w-xl text-white text-ellipsis line-clamp-3" set:html={content}></p>
+            <p slot="content" class="max-w-xl text-white text-ellipsis line-clamp-3" set:html={description}></p>
           </RecentWorkBentoItem>
         )
       )
