@@ -3,17 +3,18 @@
     class?: string
     title: string,
     subtitle?: string,
-    image: string
+    image: string,
+    directory: string
   }
 
-  const { title, subtitle } = Astro.props
+  const { title, subtitle, directory } = Astro.props
 ---
 
 <a
   class={`
     ${Astro.props.class}
   `}
-  href={`/mis-trabajos/${title}`}
+  href={`/mis-trabajos/${directory}/${title}`}
 >
   <article class={`
     relative h-full rounded-xl

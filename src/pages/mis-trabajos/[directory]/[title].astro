@@ -1,14 +1,14 @@
 ---
 import Banner from "@/components/Banner.astro"
-import Layout from "../../layouts/Layout.astro"
+import Layout from "../../../layouts/Layout.astro"
 import { recentWorks } from "@/lib/data"
 import { readDirectory } from "@/utils/readWorks"
 
-const { title } = Astro.params
+const { title, directory } = Astro.params
 
 const recentWork = recentWorks.find(recentWork => recentWork.title === title)
 
-const files: string[] = await readDirectory(`/public/works/work1`)
+const files: string[] = await readDirectory(`/public/works/${directory}`)
 ---
 
 <Layout title="Alejandro Arroyo - Photo">
@@ -28,7 +28,7 @@ const files: string[] = await readDirectory(`/public/works/work1`)
 				{files.length > 0 ? (
 					files.map(file => (
 							<div class="grid gap-4">
-								<img class="h-[50rem] max-w-full rounded-lg object-cover" src=`/works/work1/${file}` alt=""> 
+								<img class="h-[50rem] max-w-full rounded-lg object-cover" src=`/works/${directory}/${file}` alt=""> 
         			</div>
 						))
 					) : ""}
