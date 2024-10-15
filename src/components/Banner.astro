@@ -1,12 +1,21 @@
-<section class="relative w-full h-[80vh] text-white mt-20">
+---
+  interface Props {
+    class?: string
+    title: string
+    subtitle?: string
+  }
+
+  const { title, subtitle } = Astro.props
+---
+
+<section class={`
+  ${Astro.props.class}
+  relative w-full text-white mt-20
+`}>
   <img src="/banner_tmp.png" alt="Imágen banner principal" class="absolute left-0 top-0 w-full h-[80vh]" />
   <div id="banner-overlay" class="absolute left-0 top-0 w-full h-[80vh] bg-black opacity-50"></div>
   <article class="absolute left-0 top-0 w-full h-[80vh] flex flex-col justify-center items-center gap-y-20">
-    <h1 class="text-6xl">Alejandro Arroyo Photo</h1>
-    <h3 class="w-1/2 text-2xl text-center">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non imperdiet ipsum. Praesent vel pharetra dolor. 
-      Nam feugiat pharetra ligula. Vivamus id tristique arcu. Donec aliquam dolor lorem, vitae vehicula mi sollicitudin pulvinar. 
-      Pellentesque enim tellus
-    </h3>
+    <h1 class="text-6xl">{title}</h1>
+    <h3 class="w-1/2 text-2xl text-center">{subtitle}</h3>
   </article>
 </section>
