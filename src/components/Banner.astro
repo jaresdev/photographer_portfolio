@@ -12,9 +12,9 @@
   ${Astro.props.class}
   relative w-full text-white mt-20
 `}>
-  <img src="/banner_tmp.png" alt="Imágen banner principal" class="absolute left-0 top-0 w-full h-[80vh]" />
-  <div id="banner-overlay" class="absolute left-0 top-0 w-full h-[80vh] bg-black opacity-50"></div>
-  <article class="absolute left-0 top-0 w-full h-[80vh] flex flex-col justify-center items-center gap-y-20">
+  <img src="/banner_tmp.png" alt="Imágen banner principal" class=`absolute left-0 top-0 w-full ${Astro.props.class}` />
+  <div id="banner-overlay" class=`absolute left-0 top-0 w-full ${Astro.props.class} bg-black opacity-50`></div>
+  <article class=`absolute left-0 top-0 w-full ${Astro.props.class} flex flex-col justify-center items-center gap-y-20`>
     <h1 class="text-6xl">{title}</h1>
     <h3 class="w-1/2 text-2xl text-center">{subtitle}</h3>
   </article>
