@@ -5,12 +5,8 @@ import { recentWorks } from "@/lib/data"
 
 const { title } = Astro.params
 
-export async function getStaticPaths() {
+const recentWork = recentWorks.find(recentWork => recentWork.title === title)
 
-  return recentWorks.map(recentWork => ({
-    params: { title: recentWork.title }
-  }))
-}
 ---
 
 
@@ -20,5 +16,8 @@ export async function getStaticPaths() {
 			class="h-[40vh]"
 			title={title}
 		/>
+		<section id="recentWork" class="w-full xl:w-[1440px] mx-auto py-20 flex flex-col justify-center items-center space-y-10">
+			<h3 class="text-xl text-center" set:html={recentWork?.description}>/h3>
+		</section>
 	</main>
 </Layout>
