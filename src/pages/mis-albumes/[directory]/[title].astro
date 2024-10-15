@@ -11,7 +11,7 @@ const album = albums.find(album => album.title === title)
 const files: string[] = await readDirectory(`/public/albums/${directory}`)
 ---
 
-<Layout title="Alejandro Arroyo - Photo">
+<Layout title=`Alejandro Arroyo - Photo - ${title}`>
   <main class="flex flex-col justify-center">
     <Banner
       class="h-[40vh]"
