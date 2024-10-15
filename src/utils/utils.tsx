@@ -16,6 +16,15 @@ export async function getRecentWorks () {
   }
 }
 
+export async function getAllWorks () {
+  try {
+    return works
+  } catch (error) {
+    console.error('No works!', error)
+    return []
+  }
+}
+
 export async function getImagesFromDirectory (directory: string) {
   const dirPath = path.join(process.cwd(), directory)
   try {

@@ -1,9 +1,13 @@
 ---
-import Banner from "@/components/Banner.astro"
-import Layout from "@/layouts/Layout.astro"
-import { getImagesFromDirectory } from "@/utils/utils"
+import type { Work } from "@/lib/data"
 
-const files: string[] = await getImagesFromDirectory(`/public/works`)
+import Banner from "@/components/Banner.astro"
+import RecentWorkBentoItem from "@/components/RecentWorkBentoItem.astro"
+import Layout from "@/layouts/Layout.astro"
+
+import { getAllWorks } from '@/utils/utils'
+
+const allWorks: Work[] = await getAllWorks()
 ---
 
 <Layout title=`Alejandro Arroyo - Photo - Todos mis trabajos`>
@@ -12,6 +16,22 @@ const files: string[] = await getImagesFromDirectory(`/public/works`)
       class="h-[30vh]"
       title="Todos mis trabajos"
     />
-    </section>
   </main>
+  <section id="recentWork" class="w-full xl:w-[1440px] mx-auto py-20 flex flex-col justify-center items-center space-y-10">
+    <div class="grid grid-cols-1 md:grid-cols-9 auto-rows-[30rem] gap-4 mx-10">
+      {allWorks.length > 0 ? (
+        allWorks.map(({title, subtitle, thumbnail, directory, description}, index) => (
+        <RecentWorkBentoItem
+            class={`col-span-1 ${(index == 0 || index == 3) ? 'md:col-span-5' : 'md:col-span-4' }`}
+            title={title}
+            subtitle={subtitle}
+            thumbnail={thumbnail}
+            directory={directory}
+          >
+            <p slot="content" class="max-w-xl text-white text-ellipsis line-clamp-3" set:html={description}></p>
+          </RecentWorkBentoItem>
+        ))
+      ) : ""}
+    </div>
+  </section>
 </Layout>
