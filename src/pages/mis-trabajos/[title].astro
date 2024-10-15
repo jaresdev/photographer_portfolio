@@ -1,0 +1,22 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import { recentWorks } from "@/lib/data"
+
+const { title } = Astro.params
+
+export async function getStaticPaths() {
+
+  return recentWorks.map(recentWork => ({
+    params: { title: recentWork.title }
+  }))
+}
+---
+
+
+<Layout title="Alejandro Arroyo - Photo">
+	<main class="flex flex-col justify-center">
+    <section id="recentWork" class="w-full min-h-screen xl:w-[1440px] mx-auto py-20 flex flex-col justify-center items-center space-y-10">
+      <h1 class="text-black">{title}</h1>
+    </section>
+	</main>
+</Layout>
