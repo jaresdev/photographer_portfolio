@@ -1,7 +1,9 @@
 ---
 import RecentWorkBentoItem from "./RecentWorkBentoItem.astro"
 
-import { recentWorks } from "@/lib/data"
+import { getRecentWorks } from "@/utils/utils"
+
+const recentWorks = await getRecentWorks()
 ---
 
 <section id="recentWork" class="w-full xl:w-[1440px] mx-auto py-20 flex flex-col justify-center items-center space-y-10">
@@ -12,7 +14,7 @@ import { recentWorks } from "@/lib/data"
   <div class="grid grid-cols-1 md:grid-cols-9 auto-rows-[30rem] gap-4 mx-10">
     {
       recentWorks.map(
-        ({id, title, subtitle, description, thumbnail, directory}, index) => (
+      ({id, title, subtitle, description, thumbnail, directory}, index) => (
           <RecentWorkBentoItem
             class={`col-span-1 ${(index == 0 || index == 3) ? 'md:col-span-5' : 'md:col-span-4' }`}
             title={title}

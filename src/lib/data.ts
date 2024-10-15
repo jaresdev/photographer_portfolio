@@ -55,7 +55,7 @@ export const favAlbums: Album[] = [
   }
 ]
 
-export const recentWorks: Work[] = [
+export const works: Work[] = [
   {
     id: "01928eeb-583f-723f-845c-c083e81449fc",
     thumbnail: "works/work1/1.jpg",
