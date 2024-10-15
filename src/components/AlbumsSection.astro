@@ -37,9 +37,9 @@ const starredAlbums = await getStarredAlbums()
 </section>
 
 <script>
-  const btn = document.querySelector("#allAlbums");
-  if (btn) {
-    btn.addEventListener("click", () => {
+  const btnAllAlbums = document.querySelector("#allAlbums");
+  if (btnAllAlbums) {
+    btnAllAlbums.addEventListener("click", () => {
       window.location.href = "/todos-mis-albumes"
     });
   }

@@ -39,9 +39,9 @@ const recentWorks = await getRecentWorks()
 </section>
 
 <script>
-  const btn = document.querySelector("#allWorks");
-  if (btn) {
-    btn.addEventListener("click", () => {
+  const btnAllWorks = document.querySelector("#allWorks");
+  if (btnAllWorks) {
+    btnAllWorks.addEventListener("click", () => {
       window.location.href = "/todos-mis-trabajos"
     });
   }
