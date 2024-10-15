@@ -14,7 +14,7 @@ import { recentWorks } from "@/lib/data"
       recentWorks.map(
         (recentWork, index) => (
           <RecentWorkBentoItem
-            class={`col-span-1 md:col-span-${(index == 0 || index == 3) ? 4 : 6}`}
+            class={`col-span-1 ${(index == 0 || index == 3) ? 'md:col-span-5' : 'md:col-span-4' }`}
             title={recentWork.title}
             subtitle={recentWork.subtitle}
             image={recentWork.image}
