@@ -1,16 +1,16 @@
 ---
 import Banner from "@/components/Banner.astro"
-import Layout from "../../layouts/Layout.astro"
+import Layout from "@/layouts/Layout.astro"
 import { getImagesFromDirectory } from "@/utils/utils"
 
-const files: string[] = await getImagesFromDirectory(`/public/albums`)
+const files: string[] = await getImagesFromDirectory(`/public/works`)
 ---
 
-<Layout title=`Alejandro Arroyo - Photo - Todos mis álbumes`>
+<Layout title=`Alejandro Arroyo - Photo - Todos mis trabajos`>
   <main class="flex flex-col justify-center">
     <Banner
       class="h-[40vh]"
-      title="Todos mis álbumes"
+      title="Todos mis trabajos"
     />
     </section>
   </main>
