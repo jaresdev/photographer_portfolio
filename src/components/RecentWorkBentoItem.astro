@@ -3,11 +3,11 @@
     class?: string
     title: string,
     subtitle?: string,
-    image: string,
+    thumbnail: string,
     directory: string
   }
 
-  const { title, subtitle, image, directory } = Astro.props
+  const { title, subtitle, thumbnail, directory } = Astro.props
 ---
 
 <a
@@ -33,7 +33,7 @@
     <div
       slot="image"
       class="absolute left-0 top-0 bottom-0 w-full group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90 bg-center -z-10 object-cover"
-      style=`background-image: url('${image}');`
+      style=`background-image: url('${thumbnail}');`
     />
 
     <div 
