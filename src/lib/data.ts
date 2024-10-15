@@ -16,7 +16,7 @@ export interface Work {
   directory: string
 }
 
-export const favAlbums: Album[] = [
+export const albums: Album[] = [
   {
     id: "01928f96-7b90-782b-beda-8c9fa6adae81",
     title: "Sydney Opera House",
