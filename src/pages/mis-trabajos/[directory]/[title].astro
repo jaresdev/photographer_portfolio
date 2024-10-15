@@ -24,7 +24,6 @@ const files: string[] = await readDirectory(`/public/works/${directory}`)
 		<div class="bg-[#892C14] w-1/6 h-1 mx-auto mt-10 mb-20"></div>
     <section class="mx-6 mb-20">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-				{console.log(files.length)}
 				{files.length > 0 ? (
 					files.map(file => (
 							<div class="grid gap-4">
