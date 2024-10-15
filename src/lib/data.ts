@@ -5,6 +5,7 @@ export interface Album {
   description: string;
   image: string;
   directory: string;
+  starred?: boolean;
 }
 
 export interface Work {
@@ -28,7 +29,8 @@ export const albums: Album[] = [
           Lorem ipsum dolor amet, consectetur adipiscing elit. Sed est, tellus faucibus mi amet, metus. A tempus at odio quisque nec non eget varius commodo aliquet tincidunt.
     `,
     image: "/albums/album1/1.jpg",
-    directory: "album1"
+    directory: "album1",
+    starred: true
   },
   {
     id: "01928f96-9c6b-7902-a1ab-3fbeb9f02043",
@@ -40,7 +42,8 @@ export const albums: Album[] = [
           Lorem ipsum dolor amet, consectetur adipiscing elit. Sed est, tellus faucibus mi amet, metus. A tempus at odio quisque nec non eget varius commodo aliquet tincidunt.
     `,
     image: "/albums/album2/2.jpg",
-    directory: "album2"
+    directory: "album2",
+    starred: true
   },
   {
     id: "01928f96-b260-7d18-b1b7-219fd52e5d38",
@@ -52,7 +55,20 @@ export const albums: Album[] = [
           Lorem ipsum dolor amet, consectetur adipiscing elit. Sed est, tellus faucibus mi amet, metus. A tempus at odio quisque nec non eget varius commodo aliquet tincidunt.
     `,
     image: "/albums/album3/3.jpg",
-    directory: "album3"
+    directory: "album3",
+    starred: true
+  },
+  {
+    id: "01928f96-7b90-782b-beda-8c9fa6adae81",
+    title: "Sydney Opera House",
+    subtitle: "Sydney",
+    description: `
+      Lorem ipsum dolor amet, consectetur adipiscing elit. Sed est, tellus faucibus mi amet, metus. A tempus at odio quisque nec non eget varius commodo aliquet tincidunt.
+          Lorem ipsum dolor amet, consectetur adipiscing elit. Sed est, tellus faucibus mi amet, metus. A tempus at odio quisque nec non eget varius commodo aliquet tincidunt.
+          Lorem ipsum dolor amet, consectetur adipiscing elit. Sed est, tellus faucibus mi amet, metus. A tempus at odio quisque nec non eget varius commodo aliquet tincidunt.
+    `,
+    image: "/albums/album1/1.jpg",
+    directory: "album1"
   }
 ]
 
