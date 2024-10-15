@@ -1,7 +1,9 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 
-import { Work, works  } from '@/lib/data';
+import type { Work } from '@/lib/data';
+
+import { works  } from '@/lib/data';
 
 export async function getImagesFromDirectory (directory: string) {
   const dirPath = path.join(process.cwd(), directory)
