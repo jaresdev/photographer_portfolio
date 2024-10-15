@@ -7,7 +7,7 @@ export interface Album {
   directory: string;
 }
 
-export   interface RecentWork {
+export interface RecentWork {
   id: string,
   title: string,
   subtitle?: string,
