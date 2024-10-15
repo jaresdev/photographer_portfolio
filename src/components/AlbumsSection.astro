@@ -13,12 +13,13 @@ import { albums } from '@/lib/data'
   <article class="w-full xl:w-[1440px] flex flex-wrap justify-center items-center gap-10">
     {
       albums.map(
-        ({title, subtitle, description, image}) => (
+        ({title, subtitle, description, image, directory}) => (
           <AlbumsItem
             title={title}
             subtitle={subtitle}
             description={description}
             image={image}
+            directory={directory}
           />
         )
       )

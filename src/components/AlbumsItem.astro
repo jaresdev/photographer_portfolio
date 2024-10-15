@@ -4,12 +4,15 @@ interface Props {
   subtitle: string;
   description: string;
   image: string;
+  directory: string;
 }
 
-const { title, subtitle, description, image } = Astro.props;
+const { title, subtitle, description, image, directory } = Astro.props;
 ---
 
-<a href="#">
+<a
+  href={`/mis-albumes/${directory}/${title}`}
+>
   <div class="group relative w-[440px] h-[580px] cursor-pointer rounded-xl scale-95 overflow-hidden transition-all duration-500 ease-in-out hover:scale-100">
     <img src={ image } class="absolute object-cover" />
     <div class="absolute w-[440px] h-[680px] bg-gradient-to-t from-gray-800 from-5% to-50%"></div>
