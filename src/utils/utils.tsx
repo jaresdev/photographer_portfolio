@@ -1,9 +1,9 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 
-import type { Work } from '@/lib/data';
+import type { Work, Album } from '@/lib/data';
 
-import { works  } from '@/lib/data';
+import { works, albums  } from '@/lib/data';
 
 export async function getRecentWorks () {
   try {
@@ -16,11 +16,30 @@ export async function getRecentWorks () {
   }
 }
 
+export async function getStarredAlbums () {
+  try {
+    return albums
+    .filter(album => album.starred === true)
+  } catch (error) {
+    console.error('No albums!', error)
+    return []
+  }
+}
+
 export async function getAllWorks () {
   try {
     return works
   } catch (error) {
     console.error('No works!', error)
+    return []
+  }
+}
+
+export async function getAllAlbums () {
+  try {
+    return albums
+  } catch (error) {
+    console.error('No albums!', error)
     return []
   }
 }
@@ -39,4 +58,3 @@ export async function getImagesFromDirectory (directory: string) {
     return []
   }
 }
-
