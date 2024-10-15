@@ -1,7 +1,9 @@
 ---
 import AlbumsItem from "./AlbumsItem.astro"
 
-import { albums } from '@/lib/data'
+import { getStarredAlbums } from "@/utils/utils"
+
+const starredAlbums = await getStarredAlbums()
 
 ---
 
@@ -12,7 +14,7 @@ import { albums } from '@/lib/data'
   </article>
   <article class="w-full xl:w-[1440px] flex flex-wrap justify-center items-center gap-10">
     {
-      albums.map(
+      starredAlbums.map(
         ({title, subtitle, description, image, directory}) => (
           <AlbumsItem
             title={title}
