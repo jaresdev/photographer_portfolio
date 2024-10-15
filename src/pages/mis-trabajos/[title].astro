@@ -2,28 +2,37 @@
 import Banner from "@/components/Banner.astro"
 import Layout from "../../layouts/Layout.astro"
 import { recentWorks } from "@/lib/data"
+import { readDirectory } from "@/utils/readWorks"
 
 const { title } = Astro.params
 
 const recentWork = recentWorks.find(recentWork => recentWork.title === title)
+
+const files: string[] = await readDirectory(`/public/works/work1`)
 ---
 
 <Layout title="Alejandro Arroyo - Photo">
-	<main class="flex flex-col justify-center">
+  <main class="flex flex-col justify-center">
     <Banner
-			class="h-[40vh]"
-			title={title}
-		/>
-		<section class="w-full xl:w-[1440px] mx-auto py-20 flex flex-col justify-center items-center space-y-10">
-			<h3 class="text-xl text-center" set:html={recentWork?.description}></h3>
-		</section>
-		<section class="mx-6 mb-20">
-			<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-				<div class="grid gap-4">
-					<div>
-							<img class="h-auto max-w-full rounded-lg" src="/works/work1/1.jpg" alt="">
-					</div>
-			</div>			
-		</section>
-	</main>
+      class="h-[40vh]"
+      title={title}
+    />
+    <div class="bg-[#892C14] w-1/6 h-1 mx-auto my-10"></div>
+    <section class="w-full xl:w-[1440px] mx-auto py-10 flex flex-col justify-center items-center space-y-10">
+      <h3 class="text-xl text-center" set:html={recentWork?.description}></h3>
+    </section>
+		<div class="bg-[#892C14] w-1/6 h-1 mx-auto mt-10 mb-20"></div>
+    <section class="mx-6 mb-20">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+				{console.log(files.length)}
+				{files.length > 0 ? (
+					files.map(file => (
+							<div class="grid gap-4">
+								<img class="h-[50rem] max-w-full rounded-lg object-cover" src=`/works/work1/${file}` alt=""> 
+        			</div>
+						))
+					) : ""}
+      </div>
+    </section>
+  </main>
 </Layout>
