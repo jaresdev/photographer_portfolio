@@ -10,11 +10,13 @@
 ---
 
 <a
+  class={`
+    ${Astro.props.class}
+  `}
   href={`/mis-trabajos/${title}`}
 >
   <article class={`
-    ${Astro.props.class}
-    relative rounded-xl
+    relative h-full rounded-xl
     backdrop-blur-md
     border border-black/10
     shadow-inner shadow-white/10
