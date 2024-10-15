@@ -12,3 +12,12 @@
     >Contactar</button>
   </article>
 </section>
+
+<script>
+  const btn = document.querySelector("#allWorks");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      window.location.href = 'mailto:josearroyoescudero@gmail.com?subject=Me%20interesa%20tu%20trabajo&body=[Cuéntame%20lo%20que%20necesitas%20aquí]';
+    });
+  }
+</script>
