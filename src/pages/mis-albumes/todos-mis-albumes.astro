@@ -1,0 +1,17 @@
+---
+import Banner from "@/components/Banner.astro"
+import Layout from "../../layouts/Layout.astro"
+import { readDirectory } from "@/utils/readWorks"
+
+const files: string[] = await readDirectory(`/public/albums`)
+---
+
+<Layout title=`Alejandro Arroyo - Photo - Todos mis álbumes`>
+  <main class="flex flex-col justify-center">
+    <Banner
+      class="h-[40vh]"
+      title="Todos mis álbumes"
+    />
+    </section>
+  </main>
+</Layout>
