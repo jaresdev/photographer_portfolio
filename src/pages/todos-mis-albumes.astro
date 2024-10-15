@@ -1,9 +1,13 @@
 ---
+import type { Album } from "@/lib/data"
+
 import Banner from "@/components/Banner.astro"
 import Layout from "@/layouts/Layout.astro"
-import { getImagesFromDirectory } from "@/utils/utils"
+import AlbumsItem from "@/components/AlbumsItem.astro"
 
-const files: string[] = await getImagesFromDirectory(`/public/albums`)
+import { getAllAlbums } from "@/utils/utils"
+
+const albums: Album[] = await getAllAlbums()
 ---
 
 <Layout title=`Alejandro Arroyo - Photo - Todos mis álbumes`>
@@ -12,6 +16,26 @@ const files: string[] = await getImagesFromDirectory(`/public/albums`)
       class="h-[30vh]"
       title="Todos mis álbumes"
     />
+    <section id="albums" class="w-full xl:w-[1440px] mx-auto py-20 flex flex-col justify-center items-center space-y-10">
+      <article class="w-full xl:w-[1440px] flex flex-col justify-center items-center">
+        <h2 class="text-3xl m-2">Mis álbumes</h2>
+        <div class="bg-[#892C14] w-1/12 h-1"></div>
+      </article>
+      <article class="w-full xl:w-[1440px] flex flex-wrap justify-center items-center gap-10">
+        {
+          albums.map(
+            ({title, subtitle, description, image, directory}) => (
+              <AlbumsItem
+                title={title}
+                subtitle={subtitle}
+                description={description}
+                image={image}
+                directory={directory}
+              />
+            )
+          )
+        }
+      </article>
     </section>
   </main>
 </Layout>
