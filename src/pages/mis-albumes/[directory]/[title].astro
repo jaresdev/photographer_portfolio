@@ -6,16 +6,16 @@ import { getAlbumPhotos } from "@/utils/utils"
 
 const { title, directory } = Astro.params
 
-const album = albums.find(album => album.title === title)
+const album = albums.find((album) => album.title === title)
 
 if (!directory) {
-  throw new Error("Directory is undefined");
+  throw new Error("Directory is undefined")
 }
 
 const images: string[] = await getAlbumPhotos(directory)
 ---
 
-<Layout title=`Alejandro Arroyo - Photo - ${title}`>
+<Layout title={`Alejandro Arroyo - Photo - ${title}`}>
   <main class="flex flex-col justify-center">
     <Banner
       class="h-[40vh]"
@@ -27,21 +27,93 @@ const images: string[] = await getAlbumPhotos(directory)
     <section class="w-full xl:w-[1440px] mx-auto py-10 flex flex-col justify-center items-center space-y-10">
       <h3 class="text-xl text-center" set:html={album?.description}></h3>
     </section>
-		<div class="bg-[#892C14] w-1/6 h-1 mx-auto mt-10 mb-20"></div>
+    <div class="bg-[#892C14] w-1/6 h-1 mx-auto mt-10 mb-20"></div>
     <section class="mx-6 mb-20">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-				{images.length > 0 ? (
-					images.map(image => (
-							<div class="grid gap-4">
-								<img 
-                  class="h-[50rem] max-w-full rounded-lg object-cover" 
-                  src=`${image}` 
-                  alt=""
-                >
-        			</div>
-						))
-					) : ""}
+        {images.length > 0 ? (
+          images.map((image, index) => (
+            <div class="grid gap-4">
+              <img
+                class="h-[50rem] max-w-full rounded-lg object-cover cursor-pointer"
+                src={image}
+                alt={`Imagen ${index + 1}`}
+                data-index={index}
+              />
+            </div>
+          ))
+        ) : (
+          ""
+        )}
       </div>
     </section>
   </main>
+
+  <div
+    id="overlay"
+    class="fixed inset-0 bg-black bg-opacity-80 items-center justify-center z-50 hidden"
+  >
+    <div id="overlayContent" class="relative scale-50 opacity-0 transition-all duration-300">
+      <button
+        class="absolute top-2 right-2 text-white bg-[#892C14] h-6 w-6 p-2 flex items-center justify-center rounded-full"
+        id="close-overlay"
+      >
+        ✖
+      </button>
+      <img
+        id="overlay-image"
+        src=""
+        alt="Imagen ampliada"
+        class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg"
+      />
+    </div>
+  </div>
 </Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const overlay = document.getElementById("overlay") as HTMLDivElement
+    const overlayImage = document.getElementById("overlay-image") as HTMLImageElement
+    const closeOverlayButton = document.getElementById("close-overlay") as HTMLButtonElement
+    const overlayContent = document.getElementById("overlayContent") as HTMLDivElement
+
+    document.querySelectorAll("img[data-index]").forEach((img) => {
+      img.addEventListener("click", (event) => {
+        const target = event.currentTarget as HTMLImageElement
+        const src = target.src
+
+        setTimeout(() => {
+          overlayContent.classList.add("scale-100", "opacity-100")
+          overlayContent.classList.remove("scale-75", "opacity-0")
+        }, 20)
+
+        overlayImage.src = src
+        overlay.classList.remove("hidden")
+        overlay.classList.add("flex")
+        document.body.classList.add("overflow-hidden")
+      })
+    })
+
+    overlay.addEventListener("click", (event) => {
+      const target = event.target as HTMLElement
+      if (target === overlay) {
+        closeOverlay()
+      }
+    })
+
+    closeOverlayButton.addEventListener("click", () => {
+      closeOverlay()
+    })
+
+    function closeOverlay() {
+      overlayContent.classList.add("scale-75", "opacity-0")
+      overlayContent.classList.remove("scale-100", "opacity-100")
+
+      setTimeout(() => {
+        overlay.classList.add("hidden")
+        overlayImage.src = ""
+      }, 300)
+
+      document.body.classList.remove("overflow-hidden")
+    }
+  })
+</script>
