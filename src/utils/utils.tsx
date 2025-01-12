@@ -1,9 +1,48 @@
-import { promises as fs } from 'fs';
-import path from 'path';
+import "dotenv/config"
+import { promises as fs } from 'fs'
+import path from 'path'
+import cloudinary from 'cloudinary'
 
-import type { Work, Album } from '@/lib/data';
+import type { Work } from '@/lib/data'
 
-import { works, albums  } from '@/lib/data';
+import { works, albums  } from '@/lib/data'
+
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || "",
+  api_key: process.env.CLOUDINARY_API_KEY || "",
+  api_secret: process.env.CLOUDINARY_API_SECRET || "",
+});
+
+export async function getAlbumPhotos(album: string): Promise<string[]> {
+  try {
+    
+    const result = await cloudinary.v2.api.resources({
+      type: "upload",
+      max_results: 500,
+    });
+
+    const photos = result.resources.filter(
+      (resource: any) => resource.asset_folder === `albums/${album}`
+    )
+
+    return photos.map((photo: any) => photo.secure_url)
+  } catch (error) {
+    console.error(`Error al obtener fotos del álbum "${album}":`, error)
+    return []
+  }
+}
+
+export async function getAlbumList () {
+  try {
+    return Object.entries(albums).map(([key, value]: [string, any]) => ({
+      name: key,
+      ...value
+    }))
+  } catch (error) {
+    console.error("Error loading album list: ", error)
+    return []
+  }
+}
 
 export async function getRecentWorks () {
   try {
@@ -49,8 +88,8 @@ export async function getImagesFromDirectory (directory: string) {
   try {
     const files = await fs.readdir(dirPath)
     const imageFiles = files.filter(file => {
-      const ext = path.extname(file).toLowerCase()  // Obtiene la extensión del archivo
-      return ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'].includes(ext)  // Extensiones de imagen
+      const ext = path.extname(file).toLowerCase()
+      return ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'].includes(ext)
     });
     return imageFiles
   } catch (error) {

@@ -2,20 +2,26 @@
 import Banner from "@/components/Banner.astro"
 import Layout from "@/layouts/Layout.astro"
 import { albums } from "@/lib/data"
-import { getImagesFromDirectory } from "@/utils/utils"
+import { getAlbumPhotos } from "@/utils/utils"
 
 const { title, directory } = Astro.params
 
 const album = albums.find(album => album.title === title)
 
-const files: string[] = await getImagesFromDirectory(`/public/albums/${directory}`)
+if (!directory) {
+  throw new Error("Directory is undefined");
+}
+
+const images: string[] = await getAlbumPhotos(directory)
 ---
 
 <Layout title=`Alejandro Arroyo - Photo - ${title}`>
   <main class="flex flex-col justify-center">
     <Banner
       class="h-[40vh]"
-      title={title}
+      title={album?.title}
+      subtitle={album?.subtitle}
+      coverImage={album?.coverImage}
     />
     <div class="bg-[#892C14] w-1/6 h-1 mx-auto my-10"></div>
     <section class="w-full xl:w-[1440px] mx-auto py-10 flex flex-col justify-center items-center space-y-10">
@@ -24,10 +30,14 @@ const files: string[] = await getImagesFromDirectory(`/public/albums/${directory
 		<div class="bg-[#892C14] w-1/6 h-1 mx-auto mt-10 mb-20"></div>
     <section class="mx-6 mb-20">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-				{files.length > 0 ? (
-					files.map(file => (
+				{images.length > 0 ? (
+					images.map(image => (
 							<div class="grid gap-4">
-								<img class="h-[50rem] max-w-full rounded-lg object-cover" src=`/albums/${directory}/${file}` alt=""> 
+								<img 
+                  class="h-[50rem] max-w-full rounded-lg object-cover" 
+                  src=`${image}` 
+                  alt=""
+                >
         			</div>
 						))
 					) : ""}

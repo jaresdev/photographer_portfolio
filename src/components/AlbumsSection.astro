@@ -1,10 +1,11 @@
 ---
 import AlbumsItem from "./AlbumsItem.astro"
 
-import { getStarredAlbums } from "@/utils/utils"
+import { getStarredAlbums, getAlbumList } from "@/utils/utils"
 
 const starredAlbums = await getStarredAlbums()
 
+const albumNames = await getAlbumList();
 ---
 
 <section id="albums" class="w-full xl:w-[1440px] mx-auto py-20 flex flex-col justify-center items-center space-y-10">
@@ -14,13 +15,13 @@ const starredAlbums = await getStarredAlbums()
   </article>
   <article class="w-full xl:w-[1440px] flex flex-wrap justify-center items-center gap-10">
     {
-      starredAlbums.map(
-        ({title, subtitle, description, image, directory}) => (
+      albumNames.map(
+        ({title, subtitle, description, coverImage, directory}) => (
           <AlbumsItem
             title={title}
             subtitle={subtitle}
             description={description}
-            image={image}
+            coverImage={coverImage}
             directory={directory}
           />
         )

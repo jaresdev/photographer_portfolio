@@ -5,9 +5,9 @@ import Banner from "@/components/Banner.astro"
 import Layout from "@/layouts/Layout.astro"
 import AlbumsItem from "@/components/AlbumsItem.astro"
 
-import { getAllAlbums } from "@/utils/utils"
+import { getAlbumList } from "@/utils/utils"
 
-const albums: Album[] = await getAllAlbums()
+const albumNames = await getAlbumList()
 ---
 
 <Layout title=`Alejandro Arroyo - Photo - Todos mis álbumes`>
@@ -15,6 +15,7 @@ const albums: Album[] = await getAllAlbums()
     <Banner
       class="h-[30vh]"
       title="Todos mis álbumes"
+      coverImage="./banner_tmp.png"
     />
     <section id="albums" class="w-full xl:w-[1440px] mx-auto py-20 flex flex-col justify-center items-center space-y-10">
       <article class="w-full xl:w-[1440px] flex flex-col justify-center items-center">
@@ -23,13 +24,13 @@ const albums: Album[] = await getAllAlbums()
       </article>
       <article class="w-full xl:w-[1440px] flex flex-wrap justify-center items-center gap-10">
         {
-          albums.map(
-            ({title, subtitle, description, image, directory}) => (
+          albumNames.map(
+            ({title, subtitle, description, coverImage, directory}) => (
               <AlbumsItem
                 title={title}
                 subtitle={subtitle}
                 description={description}
-                image={image}
+                coverImage={coverImage}
                 directory={directory}
               />
             )
