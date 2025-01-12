@@ -1,18 +1,19 @@
 ---
-  interface Props {
-    class?: string
-    title?: string
-    subtitle?: string
-  }
+interface Props {
+  class?: string
+  title?: string
+  subtitle?: string
+  coverImage?: string
+}
 
-  const { title, subtitle } = Astro.props
+const { title, subtitle, coverImage } = Astro.props
 ---
 
 <section class={`
   ${Astro.props.class}
   relative w-full text-white mt-20
 `}>
-  <img src="/banner_tmp.png" alt="Imágen banner principal" class=`absolute left-0 top-0 w-full object-cover ${Astro.props.class}` />
+  <img src={coverImage} alt="Imágen banner principal" class=`absolute left-0 top-0 w-full object-cover ${Astro.props.class}` />
   <div id="banner-overlay" class=`absolute left-0 top-0 w-full ${Astro.props.class} bg-black opacity-50`></div>
   <article class=`absolute left-0 top-0 w-full ${Astro.props.class} flex flex-col justify-center items-center gap-y-20`>
     <h1 class="text-6xl">{title}</h1>
