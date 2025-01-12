@@ -1,11 +1,9 @@
 ---
 import AlbumsItem from "./AlbumsItem.astro"
 
-import { getStarredAlbums, getAlbumList } from "@/utils/utils"
+import { getAlbumList } from "@/utils/utils"
 
-const starredAlbums = await getStarredAlbums()
-
-const albumNames = await getAlbumList();
+const albumNames = await getAlbumList()
 ---
 
 <section id="albums" class="w-full xl:w-[1440px] mx-auto py-20 flex flex-col justify-center items-center space-y-10">
@@ -34,14 +32,22 @@ const albumNames = await getAlbumList();
     class="bg-[#892C14] border-2 border-transparent px-4 py-2 text-white rounded-lg cursor-pointer scale-90
     transition-all duration-200 ease-in-out hover:scale-110 hover:opacity-100 hover:bg-transparent hover:border-[#892C14]
     hover:text-[#892C14]"
-  >Ver todos los álbumes</button>
+  >
+    Ver todos los álbumes
+  </button>
 </section>
 
 <script>
-  const btnAllAlbums = document.querySelector("#allAlbums");
-  if (btnAllAlbums) {
-    btnAllAlbums.addEventListener("click", () => {
-      window.location.href = "/todos-mis-albumes"
-    });
-  }
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("allAlbums")
+    btn?.addEventListener("click", (event: any) => {
+      event.preventDefault()
+        
+      document.getElementById("overlay")?.classList.add("flex")
+      document.getElementById("overlay")?.classList.remove("hidden")
+      document.body.classList.add("overflow-hidden")
+
+      window.location.href = "todos-mis-albumes"
+    })
+  })
 </script>
