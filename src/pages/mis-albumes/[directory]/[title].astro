@@ -52,7 +52,7 @@ const images: string[] = await getAlbumPhotos(directory)
     id="overlay"
     class="fixed inset-0 bg-black bg-opacity-80 items-center justify-center z-50 hidden"
   >
-    <div id="overlayContent" class="relative scale-50 opacity-0 transition-all duration-300">
+    <div id="overlayContent" class="relative scale-0 opacity-0 transition-all duration-300">
       <button
         class="absolute top-2 right-2 text-white bg-[#892C14] h-6 w-6 p-2 flex items-center justify-center rounded-full"
         id="close-overlay"
@@ -83,7 +83,7 @@ const images: string[] = await getAlbumPhotos(directory)
 
         setTimeout(() => {
           overlayContent.classList.add("scale-100", "opacity-100")
-          overlayContent.classList.remove("scale-75", "opacity-0")
+          overlayContent.classList.remove("scale-0", "opacity-0")
         }, 20)
 
         overlayImage.src = src
@@ -105,7 +105,7 @@ const images: string[] = await getAlbumPhotos(directory)
     })
 
     function closeOverlay() {
-      overlayContent.classList.add("scale-75", "opacity-0")
+      overlayContent.classList.add("scale-0", "opacity-0")
       overlayContent.classList.remove("scale-100", "opacity-100")
 
       setTimeout(() => {
